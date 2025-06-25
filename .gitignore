@@ -1,0 +1,51 @@
+# ========== 공통 ==========
+*.log
+*.tmp
+*.swp
+*.bak
+*.class
+*.jar
+*.war
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# IDE 설정 파일 (IntelliJ / VSCode 등)
+.idea/
+.vscode/
+*.iml
+
+# ========== 백엔드 (Spring Boot) ==========
+backend/target/
+backend/build/
+backend/out/
+backend/.gradle/
+backend/.classpath
+backend/.project
+backend/.settings/
+
+# 민감 설정
+backend/src/main/resources/application.yml
+
+# ========== 프론트엔드 (Vue) ==========
+frontend-vue/node_modules/
+frontend-vue/dist/
+frontend-vue/.env.local
+frontend-vue/.env
+frontend-vue/.cache
+frontend-vue/.output
+
+# 로그/환경 파일
+frontend-vue/npm-debug.log*
+frontend-vue/yarn-debug.log*
+frontend-vue/yarn-error.log*
+frontend-vue/pnpm-debug.log*
+
+# ========== 기타 ==========
+*.env
+.env.*

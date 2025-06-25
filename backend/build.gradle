@@ -1,0 +1,56 @@
+plugins {
+    id 'org.springframework.boot' version '3.2.5'  // 최신 버전으로 조정 가능
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'  // Java 17 이상 권장
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // ✅ Spring Boot Web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // ✅ MariaDB JDBC Driver
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:3.3.3'
+
+    // ✅ Lombok (코드 간결화)
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // ✅ Spring DevTools (핫 리로딩, 개발 편의)
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // ✅ Spring Boot Test (선택)
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    //스프링 시큐리티 관련 모듈 의존성 주입 (직접추가)
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    //JWT 관련
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    // JSON 처리 (Jackson)
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+
+    //테슽 할때 스프링 시큐어리티 사용
+    testImplementation 'org.springframework.security:spring-security-test' // 여기에 있는 기능
+
+    //mysql db (aws rds 접속)
+    runtimeOnly 'com.mysql:mysql-connector-j:8.2.0'
+
+
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -49,6 +49,5 @@ onMounted(() => {
 
     <!-- 로그 목록 출력 -->
     <DailyLogList :logs="todayLogs" />
-    <LoadingModal :visible="isLoading" />
   </div>
 </template>

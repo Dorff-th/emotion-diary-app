@@ -34,14 +34,27 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, onMounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import axiosInstance from '@/api/axiosInstance' // ✅ 고쳐야 할 부분
+import { useToast } from 'vue-toastification'   // 토스트 임포트 (2025.06.27 add.)
+import { useAuthStore } from '@/stores/authStore' // 2025.06.27 add .
 
 const username = ref('')
 const password = ref('')
 const error = ref('')
 const router = useRouter()
+
+const route = useRoute();
+const toast = useToast()    // 토스트 use (2025.06.27 add.)
+onMounted(() => {
+  
+  if (route.query.loggedOut === 'true') {  
+    toast.success('로그아웃 되었습니다.')
+  }
+})
+
+
 
 const handleLogin = async () => {
   try {
@@ -51,7 +64,9 @@ const handleLogin = async () => {
     })
 
     const { token } = res.data
-    localStorage.setItem('accessToken', token)
+    //localStorage.setItem('accessToken', token)
+    useAuthStore().setToken(token) 
+    
 
     const payload = JSON.parse(atob(token.split('.')[1]))
 
@@ -63,7 +78,9 @@ const handleLogin = async () => {
       router.push('/user/daily-log')
     }
   } catch (err) {
-    error.value = '로그인 실패: 아이디 또는 비밀번호를 확인해주세요.'
+    
+    //error.value = '로그인 실패: 아이디 또는 비밀번호를 확인해주세요.'
+    toast.error('아이디 또는 비밀번호가 잘못되었습니다.')
   }
 }
 </script>

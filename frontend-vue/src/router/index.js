@@ -28,6 +28,7 @@ const routes = [
   },
   {
     path: '/login',
+    name: 'Login',       // ✅ 여기가 바로 중요!
     component: LoginView
   },
   {

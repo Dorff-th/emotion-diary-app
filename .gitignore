@@ -8,6 +8,59 @@
 *.war
 
 # macOS
+### Java ###
+*.class
+*.jar
+*.war
+*.ear
+
+### Gradle ###
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+**/build/
+
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+### IntelliJ IDEA ###
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+### VS Code ###
+.vscode/
+
+### OS ###
+.DS_Store
+Thumbs.db
+
+### Logs ###
+*.log
+
+### Environment Files ###
+.env
+.env.*
+
+### Application Config ###
+application-local.yml
+application-prod.yml
+
+### Node (for frontend) ###
+node_modules/
+dist/
+*.log
+pnpm-lock.yaml
+yarn.lock
+vite.config.js
+
 .DS_Store
 
 # Windows
@@ -31,6 +84,8 @@ backend/.settings/
 
 # 민감 설정
 backend/src/main/resources/application.yml
+backend/src/main/resources/application-local.yml
+backend/src/main/resources/application-prod.yml
 
 # ========== 프론트엔드 (Vue) ==========
 frontend-vue/node_modules/

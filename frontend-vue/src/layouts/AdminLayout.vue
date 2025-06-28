@@ -44,6 +44,7 @@ const router = useRouter()
 
 const logout = () => {
   localStorage.removeItem('accessToken')
-  router.push('/login')
+  //router.push('/login')
+  router.push({ name: 'Login', query: { loggedOut: 'true' } })
 }
 </script>

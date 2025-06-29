@@ -19,6 +19,9 @@
 build/
 **/build/
 
+# Gradle Wrapper 예외 처리
+!backend/gradle/wrapper/gradle-wrapper.jar
+
 ### Maven ###
 target/
 pom.xml.tag

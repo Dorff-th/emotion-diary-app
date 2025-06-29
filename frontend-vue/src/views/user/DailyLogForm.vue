@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue'
 import DailyLogFormFields from '@/components/DailyLogFormFields.vue'
 import DailyLogList from '@/components/DailyLogList.vue'
 import GPTSummaryBox from '@/components/GPTSummaryBox.vue'
-import { createDailyLog, getLogsByDate, getTodayLogs } from '@/api/dailyLog'
+import { createDailyLog, getLogsByDate, getTodayLogs } from '@/api/dailylog'
 import { useToast } from 'vue-toastification'   // 토스트 임포트 (2025.06.27 add.)
 
 // ✅ 상태 변수 선언

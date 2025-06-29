@@ -16,7 +16,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { getSummaryByDate } from '@/api/dailyLog'
+import { getSummaryByDate } from '@/api/dailylog'
 
 const props = defineProps({
   date: {

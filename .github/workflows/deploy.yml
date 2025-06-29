@@ -36,10 +36,10 @@ jobs:
         distribution: 'temurin'
 
     - name: Build Spring Boot app (Gradle)
-      working-directory: 
+      working-directory: ./backend
       run: |
-        chmod +x backend/gradlew
-        backend/gradlew clean build -x tes
+        chmod +x gradlew
+        ./gradlew clean build -x test
 
     - name: Set up Python (for EB CLI)
       uses: actions/setup-python@v4

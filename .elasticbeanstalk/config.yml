@@ -1,0 +1,11 @@
+# .elasticbeanstalk/config.yml
+global:
+  application_name: emotion-diary-app
+  default_region: ap-northeast-2
+  profile: null
+  workspace_type: Application
+
+environment:
+  name: emotion-diary-env
+  platform: Java 17 running on 64bit Amazon Corretto
+  tier: WebServer

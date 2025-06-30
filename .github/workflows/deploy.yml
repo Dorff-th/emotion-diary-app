@@ -52,6 +52,15 @@ jobs:
         chmod +x gradlew
         ./gradlew clean build -x test
 
+    - name: Find jar file
+      run: |
+        find . -type f -name "*.jar"
+
+    - name: Debug build folder
+      run: |
+        find . -type d -name "build" -exec ls -al {} \;
+      
+
     - name: Set up Python (for EB CLI)
       uses: actions/setup-python@v4
       with:

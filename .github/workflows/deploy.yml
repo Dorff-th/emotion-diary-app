@@ -30,12 +30,12 @@ jobs:
         cp -r frontend-vue/dist/* backend/src/main/resources/static/
 
     - name: Create application.yml
-        run: |
-          echo "${{ secrets.APPLICATION_YML }}" > ./backend/src/main/resources/application.yml
+      run: |
+        echo "${{ secrets.APPLICATION_YML }}" > ./backend/src/main/resources/application.yml
 
-      - name: Create application-prod.yml
-        run: |
-          echo "${{ secrets.APPLICATION_PROD_YML }}" > ./backend/src/main/resources/application-prod.yml    
+    - name: Create application-prod.yml
+      run: |
+        echo "${{ secrets.APPLICATION_PROD_YML }}" > ./backend/src/main/resources/application-prod.yml    
 
     - name: Set up Java
       uses: actions/setup-java@v3

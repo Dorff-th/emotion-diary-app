@@ -1,1 +1,1 @@
-web: java -jar backend/build/libs/emotion-diary-app-0.0.1-SNAPSHOT.jar
+web: java -jar backend/build/libs/emotion-diary-backend-0.0.1-SNAPSHOT.jar

@@ -1,11 +1,12 @@
-# .elasticbeanstalk/config.yml
+branch-defaults:
+  main:
+    environment: zmylong-env
+environment:
+  name: zmylong-env
+  platform: Java 17 running on 64bit Amazon Corretto
+  tier: WebServer
 global:
-  application_name: emotion-diary-app
+  application_name: zmylong-productivity
   default_region: ap-northeast-2
   profile: null
   workspace_type: Application
-
-environment:
-  name: emotion-diary-env
-  platform: Java 17 running on 64bit Amazon Corretto
-  tier: WebServer

@@ -59,5 +59,4 @@ jobs:
         aws-region: ap-northeast-2
 
     - name: Deploy to Elastic Beanstalk
-      working-directory: ./backend
       run: eb deploy

@@ -106,3 +106,5 @@ frontend-vue/pnpm-debug.log*
 # ========== 기타 ==========
 *.env
 .env.*
+
+!backend/build/libs/

@@ -107,4 +107,10 @@ frontend-vue/pnpm-debug.log*
 *.env
 .env.*
 
+# === 시행착오(삽질) 및 원인 해결책 간단히 기록
+.logs/
+
+# === git commit -m "fix: 커밋 메시지" 위 삽질기록을 notionDB로 자동하는 파이썬 스크립트
+.scripts/
+
 #!backend/build/libs/ <-- 삭제 요망 (backend/build/ 가 있다면 동작 무쓸모)

@@ -6,13 +6,22 @@ import GPTSummaryBox from '@/components/GPTSummaryBox.vue'
 import { createDailyLog, getLogsByDate, getTodayLogs } from '@/api/dailylog'
 import { useToast } from 'vue-toastification'   // 토스트 임포트 (2025.06.27 add.)
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
 
 // ✅ 상태 변수 선언
 const mood = ref('')
 const selectedHabits = ref([])
 const reflection = ref('')
 //const selectedDate = ref(new Date().toISOString().slice(0, 10))
-const selectedDate = ref(dayjs().format('YYYY-MM-DD'));
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
+
+//const selectedDate = ref(dayjs().format('YYYY-MM-DD'));
+const selectedDate = ref(dayjs().tz('Asia/Seoul').format('YYYY-MM-DD'))
+console.log(selectedDate);
+
 const todayLogs = ref([])
 
 // ✅ 마운트 시 오늘 기록 불러오기

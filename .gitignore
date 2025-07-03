@@ -107,4 +107,4 @@ frontend-vue/pnpm-debug.log*
 *.env
 .env.*
 
-!backend/build/libs/
+#!backend/build/libs/ <-- 삭제 요망 (backend/build/ 가 있다면 동작 무쓸모)

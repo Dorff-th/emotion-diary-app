@@ -1,12 +1,14 @@
 <script setup>
 import { ref, watch, onMounted } from 'vue'
+import dayjs from 'dayjs';
 
 import { getLogsByDate } from '@/api/dailylog'
 import DailyLogList from '@/components/DailyLogList.vue'
 //import LoadingModal from '@/components/common/LoadingModal.vue'  //모달창을 수동으로 (2025.06.27)
 
 // 날짜 선택
-const selectedDate = ref(new Date().toISOString().slice(0, 10)) // 오늘 날짜 기본값
+//const selectedDate = ref(new Date().toISOString().slice(0, 10)) // 오늘 날짜 기본값
+const selectedDate = ref(dayjs().format('YYYY-MM-DD'));
 const todayLogs = ref([])
 
 // 날짜별 감정/회고 데이터 불러오기

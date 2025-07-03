@@ -51,7 +51,7 @@ GPT API
 
 AWS Elastic Beanstalk (배포 예정)
 
-✨ 향후 추가 예정
+✨ 향후 추가 예정(comming soon)
 감정 일기 GPT 요약
 
 일정관리, 습관관리, 목표 트래킹

@@ -7,15 +7,20 @@ import com.zmylong.productivity.gpt.service.OpenAIService;
 import com.zmylong.productivity.member.entity.Member;
 import com.zmylong.productivity.dailylog.repository.DailyLogRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class DailyLogService {
 
     private final OpenAIService openAIService;
@@ -58,8 +63,19 @@ public class DailyLogService {
     }
 
     public List<DailyLogDto> getLogsByDate(LocalDate date, Member member) {
-        LocalDateTime start = date.atStartOfDay();
-        LocalDateTime end = start.plusDays(1);
+        //LocalDateTime start = date.atStartOfDay();
+        //LocalDateTime end = start.plusDays(1);
+
+        ZoneId seoulZone = ZoneId.of("Asia/Seoul");
+        // 넘어온 LocalDate는 타임존이 없음 → 강제로 KST 기준으로 보정
+        ZonedDateTime zonedStart = date.atStartOfDay(seoulZone);
+        ZonedDateTime zonedEnd = zonedStart.plusDays(1);
+
+        // 최종적으로는 LocalDateTime으로 변환해서 JPA에서 사용할 수 있게
+        LocalDateTime start = zonedStart.toLocalDateTime();
+        LocalDateTime end = zonedEnd.toLocalDateTime();
+
+        log.info("조회일자 기준 start: {}, end: {}", start, end);
 
         List<DailyLog> logs = dailyLogRepository.findAllByMemberIdAndCreatedAtBetweenOrderByCreatedAtDesc(member.getId(), start, end);
 

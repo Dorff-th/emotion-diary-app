@@ -56,12 +56,16 @@ public class DailyLogController {
 
     //사용자가 달력에서 직접 날짜를 선택하여 감정상태와 회고록 조회
     @GetMapping("/daily-logs/date")
-    public ResponseEntity<List<DailyLogDto>> getLogsByDate(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date, @AuthenticationPrincipal MemberDetails memberDetails) {
+    public ResponseEntity<List<DailyLogDto>> getLogsByDate(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+                                                           @AuthenticationPrincipal MemberDetails memberDetails) {
 
-        log.info("\n\n===date : " + date);
+        log.info("\n\n==Requestparams date : " + date);
 
         Member member = memberDetails.getMember();
         List<DailyLogDto> logs = dailyLogService.getLogsByDate(date, member);
+
+        logs.forEach(log -> System.out.println(log.getCreatedAt()));
+
 
         return logs.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(logs);
     }

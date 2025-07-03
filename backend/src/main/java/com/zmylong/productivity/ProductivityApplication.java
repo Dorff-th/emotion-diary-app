@@ -1,8 +1,11 @@
 package com.zmylong.productivity;
 
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.TimeZone;
 
 @SpringBootApplication
 public class ProductivityApplication {
@@ -10,15 +13,10 @@ public class ProductivityApplication {
         SpringApplication.run(ProductivityApplication.class, args);
     }
 
-    /*
-    애플리케이션이 실행될때 member 테이블에 테스트 데이터 삽입
-     */
-    /*@Bean
-    CommandLineRunner test(MemberService memberService) {
-        return args -> {
-            memberService.register("testuser", "1234");
-            System.out.println("등록 완료");
-        };
-    }*/
+    @PostConstruct
+    public void init() {
+        // JVM의 기본 시간대를 Asia/Seoul로 설정
+        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
+    }
 
 }

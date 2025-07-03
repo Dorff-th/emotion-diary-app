@@ -49,7 +49,7 @@ MariaDB + JPA
 
 GPT API
 
-AWS Elastic Beanstalk (배포 예정)
+AWS Elastic Beanstalk (배포 예정1)
 
 ✨ 향후 추가 예정(comming soon)
 감정 일기 GPT 요약

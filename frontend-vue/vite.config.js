@@ -20,6 +20,15 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'), // ⬅️ 이거 중요!
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        entryFileNames: 'assets/[name].[hash].js',       // ✅ 파일명에 해시 추가
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]',
+      },
+    },
+  },
 })
 
 

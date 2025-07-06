@@ -4,7 +4,8 @@ import DailyLogFormFields from '@/components/DailyLogFormFields.vue'
 import DailyLogList from '@/components/DailyLogList.vue'
 import GPTSummaryBox from '@/components/GPTSummaryBox.vue'
 import { createDailyLog, getLogsByDate, getTodayLogs } from '@/api/dailylog'
-import { useToast } from 'vue-toastification'   // 토스트 임포트 (2025.06.27 add.)
+//import { useToast } from 'vue-toastification'   // 토스트 임포트 (2025.06.27 add.)
+import { showError, showSuccess } from '@/utils/toastHelper' // ↑ 대체
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
@@ -20,6 +21,7 @@ dayjs.extend(timezone)
 
 //const selectedDate = ref(dayjs().format('YYYY-MM-DD'));
 const selectedDate = ref(dayjs().tz('Asia/Seoul').format('YYYY-MM-DD'))
+
 console.log(selectedDate);
 
 const todayLogs = ref([])
@@ -36,7 +38,7 @@ onMounted(async () => {
   }
 })
 
-const toast = useToast()    // 토스트 use (2025.06.27 add.)
+//const toast = useToast()    // 토스트 use (2025.06.27 add.)
 const handleSave = async () => {
   try {
     const payload = {
@@ -46,15 +48,15 @@ const handleSave = async () => {
     }
     const res = await createDailyLog(payload)
     if (res.status === 201 || res.status === 200) {
-      toast.success('기록이 저장되었습니다.')
+      showSuccess('기록이 저장되었습니다.')
       // 저장 후 다시 목록 새로고침
       const updated = await getTodayLogs()
       todayLogs.value = updated.data
     }
   } catch (err) {
-    console.error('기록 저장 실패', err)
+    showError('기록 저장 실패', err)
     //alert('기록 저장에 실패했습니다.')
-    toast.error('기록 저장에 실패했습니다.')
+    showError('기록 저장에 실패했습니다.')
   }
 }
 

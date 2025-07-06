@@ -14,6 +14,7 @@ dayjs.extend(utc)
 dayjs.extend(timezone)
 //const selectedDate = ref(dayjs().format('YYYY-MM-DD'));
 const selectedDate = ref(dayjs().tz('Asia/Seoul').format('YYYY-MM-DD'))
+
 console.log(selectedDate);
 const todayLogs = ref([])
 

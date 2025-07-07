@@ -44,7 +44,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/daily-logs/**").hasAnyRole("USER", "ADMIN") // ✅ admin도 허용
                         .requestMatchers("/", "/test", "/login").permitAll()
                         .requestMatchers(
-                                "/", "/index.html", "/static/**", "/css/**", "/js/**", "/img/**", "/assets/**", "/vite.svg", "/favicon.ico"
+                                "/", "/index.html", "/static/**", "/css/**", "/js/**", "/img/**", "/assets/**", "/*.svg", "/favicon.ico"
                         ).permitAll()
                         .anyRequest().authenticated()) // 나머지는 인증 필요
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)

@@ -59,12 +59,12 @@ public class DailyLogController {
     public ResponseEntity<List<DailyLogDto>> getLogsByDate(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
                                                            @AuthenticationPrincipal MemberDetails memberDetails) {
 
-        log.info("\n\n==Requestparams date : " + date);
+        //log.info("\n\n==Requestparams date : " + date);
 
         Member member = memberDetails.getMember();
         List<DailyLogDto> logs = dailyLogService.getLogsByDate(date, member);
 
-        logs.forEach(log -> System.out.println(log.getCreatedAt()));
+        //logs.forEach(log -> System.out.println(log.getCreatedAt()));
 
 
         return logs.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(logs);

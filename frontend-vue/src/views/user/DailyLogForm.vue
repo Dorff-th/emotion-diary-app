@@ -9,9 +9,11 @@ import { showError, showSuccess } from '@/utils/toastHelper' // ↑ 대체
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
+import router from '@/router'
 
 // ✅ 상태 변수 선언
-const mood = ref('')
+//const mood = ref('')
+const mood = ref(1) //Number 타입으로 교체
 const selectedHabits = ref([])
 const reflection = ref('')
 //const selectedDate = ref(new Date().toISOString().slice(0, 10))
@@ -49,9 +51,12 @@ const handleSave = async () => {
     const res = await createDailyLog(payload)
     if (res.status === 201 || res.status === 200) {
       showSuccess('기록이 저장되었습니다.')
-      // 저장 후 다시 목록 새로고침
-      const updated = await getTodayLogs()
-      todayLogs.value = updated.data
+      
+      setTimeout(() => {
+        router.push('/user/daily-logs')
+      }, 1000)
+      //const updated = await getTodayLogs()
+      //todayLogs.value = updated.data
     }
   } catch (err) {
     showError('기록 저장 실패', err)

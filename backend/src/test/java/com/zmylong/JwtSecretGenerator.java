@@ -8,7 +8,7 @@ public class JwtSecretGenerator {
         byte[] secretBytes = new byte[64]; // 512비트
         new SecureRandom().nextBytes(secretBytes);
         String secret = Base64.getEncoder().encodeToString(secretBytes);
-        System.out.println("Generated JWT Secret: ");
+        System.out.println("Generated JWT Secret:1 ");
         System.out.println(secret);
     }
 }

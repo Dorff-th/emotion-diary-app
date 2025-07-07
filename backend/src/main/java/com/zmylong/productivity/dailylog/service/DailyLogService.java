@@ -32,8 +32,7 @@ public class DailyLogService {
         String reflection = request.getReflection();
 
         // GPT 피드백 생성
-        //String feedback = openAIService.getFeedback(mood, habits, reflection); // 로컬에서 테스트 할때는 임시로 막는다(과금 우려)
-        String feedback = "GTP 회고록 테스트 입니다.";
+        String feedback = openAIService.getFeedback(mood, habits, reflection);
 
         // 저장
         DailyLog log = DailyLog.builder()

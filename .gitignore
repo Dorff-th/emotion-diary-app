@@ -61,7 +61,7 @@ dist/
 *.log
 pnpm-lock.yaml
 yarn.lock
-!vite.config.js
+#vite.config.js
 
 .DS_Store
 

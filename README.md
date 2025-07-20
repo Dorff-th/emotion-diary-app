@@ -56,6 +56,6 @@ AWS Elastic Beanstalk (배포 예정1)
 
 일정관리, 습관관리, 목표 트래킹
 
-관리자 대시보드
+관리자 대시보드 등..
 
 CI/CD (GitHub Actions + EB 배포)

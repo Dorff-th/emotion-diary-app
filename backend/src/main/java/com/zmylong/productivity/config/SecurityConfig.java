@@ -53,24 +53,10 @@ public class SecurityConfig {
         return http.build();
     }
 
-    /*@Bean
-    @Profile("local")
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:5173")); // ✅ 정확한 도메인 지정
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(List.of("*"));
-        config.setAllowCredentials(true);
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-        return source;
-    }*/
-
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://zmylong.ap-northeast-2.elasticbeanstalk.com/", "http://localhost:5173")); // 여러 도메인 등록 가능
+        config.setAllowedOrigins(List.of("http://emotion-diary-frontend.s3-website.ap-northeast-2.amazonaws.com", "http://localhost:5173")); // 여러 도메인 등록 가능
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);

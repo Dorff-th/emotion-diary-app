@@ -33,6 +33,7 @@ jobs:
     - name: ☁️ Upload frontend to S3
       run: |
         aws s3 sync ./frontend-react/dist s3://${{ secrets.AWS_S3_BUCKET_NAME }} --region ap-northeast-2 --delete
+        aws s3 website s3://${{ secrets.AWS_S3_BUCKET_NAME }} --index-document index.html --error-document index.html
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

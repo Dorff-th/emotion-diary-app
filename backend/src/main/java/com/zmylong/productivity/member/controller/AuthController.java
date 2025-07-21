@@ -30,6 +30,8 @@ public class AuthController {
         );
 
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        System.out.println("\n\n\n-----------");
+        System.out.println(userDetails.getPassword());
 
         // JWT 발급
         String token = jwtTokenProvider.createToken(userDetails.getUsername(),

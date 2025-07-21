@@ -1,4 +1,4 @@
-name: Deploy Spring Boot + Vue to Elastic Beanstalk
+name: Deploy Spring Boot + React to Elastic Beanstalk
 
 on:
   push:
@@ -18,8 +18,8 @@ jobs:
       with:
         node-version: '18'
 
-    - name: Install frontend dependencies and build (Vue)
-      working-directory: ./frontend-vue
+    - name: Install frontend dependencies and build (React)
+      working-directory: ./frontend-react
       run: |
         npm ci
         npm run build
@@ -27,7 +27,7 @@ jobs:
     - name: Copy built frontend to Spring Boot static folder
       run: |
         rm -rf backend/src/main/resources/static/*
-        cp -r frontend-vue/dist/* backend/src/main/resources/static/
+        cp -r frontend-react/build/* backend/src/main/resources/static/
 
     - name: Create application.yml
       run: |
@@ -59,7 +59,6 @@ jobs:
     - name: Debug build folder
       run: |
         find . -type d -name "build" -exec ls -al {} \;
-      
 
     - name: Set up Python (for EB CLI)
       uses: actions/setup-python@v4

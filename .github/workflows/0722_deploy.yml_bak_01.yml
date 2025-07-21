@@ -19,11 +19,6 @@ jobs:
       with:
         node-version: '18'
 
-    - name: 📝 Create .env.production
-      working-directory: ./frontend-react
-      run: |
-        echo "VITE_API_BASE_URL=http://3.34.129.211:8080/api" > .env.production
-
     - name: 🔧 Install and build frontend
       working-directory: ./frontend-react
       run: |

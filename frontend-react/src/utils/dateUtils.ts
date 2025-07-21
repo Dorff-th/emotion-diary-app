@@ -6,7 +6,7 @@ import {
   subDays,
   format,
 } from 'date-fns';
-import { PeriodOption } from '@/types/statisticsTypes';
+import { PeriodOption } from '@/features/statistics/types/statisticsTypes';
 
 export const getDateRange = (option: PeriodOption): [string, string] => {
   const today = new Date();

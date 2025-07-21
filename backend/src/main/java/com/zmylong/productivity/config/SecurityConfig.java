@@ -1,11 +1,10 @@
 package com.zmylong.productivity.config;
 
 import com.zmylong.productivity.member.service.MemberDetailService;
-import com.zmylong.productivity.common.util.JwtAuthenticationFilter;
+import com.zmylong.productivity.legacyvue.common.util.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -41,7 +40,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll() // 로그인, 회원가입 등은 허용
                         .requestMatchers("/api/admin/**").hasRole("ADMIN") // OK
-                        .requestMatchers("/api/daily-logs/**").hasAnyRole("USER", "ADMIN") // ✅ admin도 허용
+                        .requestMatchers("/api/daily-logs/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/api/user/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/", "/test", "/login").permitAll()
                         .requestMatchers(
                                 "/", "/index.html", "/static/**", "/css/**", "/js/**", "/img/**", "/assets/**", "/*.svg", "/favicon.ico"

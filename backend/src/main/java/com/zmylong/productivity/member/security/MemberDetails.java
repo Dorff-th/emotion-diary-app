@@ -22,6 +22,11 @@ public class MemberDetails implements UserDetails {
         return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + member.getRole()));
     }
 
+
+    public Long getId() {
+        return member.getId();
+    }
+
     @Override
     public String getPassword() {
         return member.getPassword();

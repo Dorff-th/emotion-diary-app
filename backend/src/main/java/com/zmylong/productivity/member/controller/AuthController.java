@@ -2,9 +2,9 @@ package com.zmylong.productivity.member.controller;
 
 
 
-import com.zmylong.productivity.common.dto.LoginRequest;
-import com.zmylong.productivity.common.dto.LoginResponse;
-import com.zmylong.productivity.common.util.JwtTokenProvider;
+import com.zmylong.productivity.legacyvue.common.dto.LoginRequest;
+import com.zmylong.productivity.legacyvue.common.dto.LoginResponse;
+import com.zmylong.productivity.legacyvue.common.util.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -1,9 +1,9 @@
 package com.zmylong.productivity.controller;
 
-import com.zmylong.productivity.gpt.entity.GptCallLog;
+import com.zmylong.productivity.legacyvue.gpt.entity.GptCallLog;
 import com.zmylong.productivity.member.entity.Member;
 import com.zmylong.productivity.member.entity.Role;
-import com.zmylong.productivity.gpt.repository.GptCallLogRepository;
+import com.zmylong.productivity.legacyvue.gpt.repository.GptCallLogRepository;
 import com.zmylong.productivity.member.repository.MemberRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -63,7 +63,8 @@ jobs:
 
     - name: 📤 Copy JAR to EC2
       run: |
-        scp -i ec2-key.pem -o StrictHostKeyChecking=no ./backend/build/libs/*.jar ec2-user@${{ secrets.EC2_HOST }}:/home/ec2-user/emotion-diary-backend-0.0.1-SNAPSHOT.jar
+         JAR_NAME=$(ls ./backend/build/libs/*.jar | head -n 1)
+         scp -i ec2-key.pem -o StrictHostKeyChecking=no "$JAR_NAME" ec2-user@${{ secrets.EC2_HOST }}:/home/ec2-user/emotion-diary-backend-0.0.1-SNAPSHOT.jar
 
     - name: 🚀 Restart Spring Boot App on EC2
       run: |

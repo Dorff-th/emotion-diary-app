@@ -21,7 +21,7 @@ const SummaryPage = () => {
   }, [summary]);
 
   if (loading) return <div className="text-center">불러오는 중...</div>;
-  if (!summary) return <div className="text-center">오늘 회고가 없습니다.</div>;
+  if (!summary) return <div className="text-center">오늘 회고가 없습니다.!</div>;
 
   const parsedHabits = (() => {
     try {

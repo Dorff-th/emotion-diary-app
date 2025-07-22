@@ -31,7 +31,7 @@ const { showSuccess, showError } = useToastHelper();
         <p className="text-sm text-gray-700 whitespace-pre-wrap">{gptSummary}</p>
       ) : (
         <div>
-          <p className="text-sm text-gray-500 mb-2">아직 요약이 없어요.</p>
+          <p className="text-sm text-gray-500 mb-2">아직 요약이 없어요!</p>
           {/* <button
             onClick={handleGenerateSummary}
             disabled={loading}

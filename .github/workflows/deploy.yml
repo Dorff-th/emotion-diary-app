@@ -45,9 +45,14 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
+    - name: 📄 Create application.yml
+      run: |
+        echo "${{ secrets.APPLICATION_YML }}" > ./backend/src/main/resources/application.yml
+
     - name: 📄 Create application-prod.yml
       run: |
         echo "${{ secrets.APPLICATION_PROD_YML }}" > ./backend/src/main/resources/application-prod.yml
+
 
     - name: 🛠️ Build Spring Boot App (bootJar)
       working-directory: ./backend

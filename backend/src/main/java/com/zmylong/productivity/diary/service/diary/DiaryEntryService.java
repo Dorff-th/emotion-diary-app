@@ -16,6 +16,7 @@ import com.zmylong.productivity.diary.repository.gpt.GptSummaryRepository;
 import com.zmylong.productivity.member.entity.Member;
 import com.zmylong.productivity.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -34,6 +35,7 @@ import java.util.TreeMap;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class DiaryEntryService {
 
     private final DiaryEntryRepository diaryEntryRepository;
@@ -160,9 +162,12 @@ public class DiaryEntryService {
 
         String habitJson = objectMapper.writeValueAsString(dto.getHabitTags());
 
+        LocalDate today = LocalDate.now();
+        log.info("\n\n--=====diary save today : " + today);
+
         DiaryEntry entry = DiaryEntry.builder()
                 .member(member)
-                .diaryDate(dto.getDiaryDate())
+                .diaryDate(today)       // 클라이언트의 new Date() 를 받아오는것이 아닌 서버에서 오늘날짜를 직접생성
                 .emotion(dto.getEmotionScore())
                 .habitTags(habitJson)
                 .feelingKo(dto.getFeelingKo())

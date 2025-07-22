@@ -63,21 +63,21 @@ jobs:
 
     - name: 📤 Copy JAR to EC2
       run: |
-         JAR_NAME=$(ls ./backend/build/libs/*.jar | head -n 1)
-         scp -i ec2-key.pem -o StrictHostKeyChecking=no "$JAR_NAME" ec2-user@${{ secrets.EC2_HOST }}:/home/ec2-user/emotion-diary-backend-0.0.1-SNAPSHOT.jar
+        JAR_NAME=$(ls ./backend/build/libs/*.jar | head -n 1)
+        scp -i ec2-key.pem -o StrictHostKeyChecking=no "$JAR_NAME" ec2-user@${{ secrets.EC2_HOST }}:/home/ec2-user/emotion-diary-backend-0.0.1-SNAPSHOT.jar
 
     - name: 🚀 Restart Spring Boot App on EC2
       run: |
         ssh -i ec2-key.pem -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} << 'EOF'
-          echo "🔍 Stopping previous app (if running)..."
-          PID=\$(lsof -ti:8080)
-          if [ -n "\$PID" ]; then
-            kill -9 \$PID
-            echo "✅ Stopped process \$PID"
-          else
-            echo "ℹ️ No running process found on port 8080"
-          fi
+        echo "🔍 Stopping previous app (if running)..."
+        PID=\$(lsof -ti:8080)
+        if [ -n "\$PID" ]; then
+        kill -9 \$PID
+        echo "✅ Stopped process \$PID"
+        else
+        echo "ℹ️ No running process found on port 8080"
+        fi
 
-          echo "🚀 Starting Spring Boot application..."
-          nohup java -jar /home/ec2-user/emotion-diary-backend-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod --server.address=0.0.0.0 --server.port=8080 > /home/ec2-user/app.log 2>&1 &
+        echo "🚀 Starting Spring Boot application..."
+        nohup java -jar /home/ec2-user/emotion-diary-backend-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod --server.address=0.0.0.0 --server.port=8080 > /home/ec2-user/app.log 2>&1 &
         EOF

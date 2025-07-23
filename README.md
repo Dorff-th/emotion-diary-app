@@ -1,7 +1,7 @@
-# 🧠 Emotion Diary App
+# 🧠 Emotion Diary App 
 
 감정 기반 회고 일기 & GPT 요약 웹앱  
-Spring Boot + Vue.js 기반 자기개발 프로젝트입니다.
+Spring Boot + Vue.js 기반 자기개발 프로젝트입니다.(React로 전환중)
 
 ---
 

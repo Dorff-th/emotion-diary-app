@@ -163,7 +163,7 @@ public class DiaryEntryService {
         String habitJson = objectMapper.writeValueAsString(dto.getHabitTags());
 
         LocalDate today = LocalDate.now();
-        log.info("\n\n--=====diary save today : " + today);
+        log.debug("\n\n--=====diary save today : " + today);
 
         DiaryEntry entry = DiaryEntry.builder()
                 .member(member)

@@ -6,6 +6,7 @@ import com.zmylong.productivity.diary.repository.diary.DiaryEntryRepository;
 import com.zmylong.productivity.diary.repository.gpt.GptSummaryRepository;
 import com.zmylong.productivity.member.entity.Member;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class GptServiceImpl implements GptService {
 
     private final DiaryGptClient diaryGptClient;
@@ -41,7 +43,7 @@ public class GptServiceImpl implements GptService {
 
     @Override
     public String getDiaryFeedback(String content, String feedbackType) {
-        String style = switch (feedbackType.toUpperCase()) {
+        String style = switch (feedbackType) {
             case "encourage" -> "[피드백 스타일: 따뜻하고 긍정적이며 응원하는 말투]";
             case "scold"     -> "[피드백 스타일: 엄격하고 직설적으로 지적하는 말투]";
             case "roast"     -> "[피드백 스타일: 유머를 섞어 가볍게 놀리면서 지적하는 말투]";
@@ -59,6 +61,8 @@ public class GptServiceImpl implements GptService {
         - 스타일에 따라 말투가 명확하게 구분되어야 함
         - 지시된 스타일과 다르게 응답하면 안 됨
         """, style, content);
+
+        log.info("\n --- prompt : " + prompt);
 
         return diaryGptClient.chat(prompt);
     }

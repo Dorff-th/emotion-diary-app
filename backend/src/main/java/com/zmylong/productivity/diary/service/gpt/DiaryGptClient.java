@@ -22,7 +22,10 @@ public class DiaryGptClient {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    public String chat(String userPrompt) {
+    public String chat(String userPrompt, GptRole role) {
+
+        String systemMessage = getSystemMessage(role);
+
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(apiKey);
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -30,7 +33,7 @@ public class DiaryGptClient {
         Map<String, Object> body = Map.of(
                 "model", "gpt-4o", // 또는 gpt-3.5-turbo
                 "messages", List.of(
-                        Map.of("role", "system", "content", "당신은 감정을 자연스럽게 영어 문장으로 바꾸는 감정 전문가입니다."),
+                        Map.of("role", "system", "content", systemMessage),
                         Map.of("role", "user", "content", userPrompt)
                 ),
                 "temperature", 0.7
@@ -55,6 +58,15 @@ public class DiaryGptClient {
     public String getFeedbackFromGpt(String prompt) {
         // TODO: 실제 GPT 연동 or mock
         return "오늘도 실천을 멈추지 않은 당신, 정말 대단해요! 계속해서 루틴을 이어가 봐요 😊";
+    }
+
+
+    private String getSystemMessage(GptRole role) {
+        return switch (role) {
+            case FEELING_TRANSLATOR -> "You are an expert in expressing Korean emotions in natural English sentences.";
+            case DIARY_SUMMARIZER -> "당신은 사용자의 회고 내용을 간결하고 따뜻하게 요약하는 한국어 요약 전문가입니다.";
+            case FEEDBACK_COACH -> "당신은 사용자의 감정에 공감하고 조언을 주는 따뜻한 피드백 전문가입니다.";
+        };
     }
 
 

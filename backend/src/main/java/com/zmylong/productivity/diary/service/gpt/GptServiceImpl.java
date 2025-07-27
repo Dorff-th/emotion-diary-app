@@ -34,7 +34,7 @@ public class GptServiceImpl implements GptService {
             각 문장은 따로 줄바꿈해서 보여줘.
         """, feelingKo);
 
-        String result = diaryGptClient.chat(prompt);
+        String result = diaryGptClient.chat(prompt, GptRole.FEELING_TRANSLATOR);
         return Arrays.stream(result.split("\n"))
                 .filter(line -> !line.trim().isEmpty())
                 .map(String::trim)
@@ -64,7 +64,7 @@ public class GptServiceImpl implements GptService {
 
         log.info("\n --- prompt : " + prompt);
 
-        return diaryGptClient.chat(prompt);
+        return diaryGptClient.chat(prompt, GptRole.FEEDBACK_COACH);
     }
 
     @Override
@@ -85,7 +85,7 @@ public class GptServiceImpl implements GptService {
         // 3. GPT 요청
         String prompt = String.format("%s에 작성한 회고입니다. 요약해 주세요.\n%s", date, fullContent);
         //String summary = diaryGptClient.requestSummary(prompt);
-        String summary = diaryGptClient.chat(prompt);
+        String summary = diaryGptClient.chat(prompt, GptRole.DIARY_SUMMARIZER);
 
         // 4. DB 저장
         GptSummary entity = new GptSummary();
@@ -167,6 +167,5 @@ public class GptServiceImpl implements GptService {
                 diary.getContent()
         );
     }
-
 
 }

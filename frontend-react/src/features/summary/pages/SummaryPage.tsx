@@ -5,6 +5,7 @@ import TodayEmotionCard from '../components/TodayEmotionCard';
 import TodayHabitCard from '../components/TodayHabitCard';
 import SummaryCard from '../components/SummaryCard';
 import FeedbackCard from '../components/FeedbackCard';
+import TodayDiaryCard from '../components/TodayDiaryCard';
 
 const SummaryPage = () => {
   const { summary, loading } = useSummaryData();
@@ -40,13 +41,14 @@ const SummaryPage = () => {
         feelingEn={summary.feelingEn}
       />
       <TodayHabitCard habits={parsedHabits} />
-      <SummaryCard
-        summary={gptSummary}
-        onSummaryUpdated={(newSummary) => setGptSummary(newSummary)}
-      />
+      <TodayDiaryCard content={summary.content} />
       <FeedbackCard
         feedback={gptFeedback}
         onFeedbackUpdated={(newFeedback) => setGptFeedback(newFeedback)}
+      />
+      <SummaryCard
+        summary={gptSummary}
+        onSummaryUpdated={(newSummary) => setGptSummary(newSummary)}
       />
     </div>
   );
